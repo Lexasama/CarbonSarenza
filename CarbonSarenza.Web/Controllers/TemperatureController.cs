@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CarbonSarenza.Web.Domain.Services;
+using CarbonSarenza.Web.Infrastructure.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CarbonSarenza.Web.Controllers
 {
@@ -7,10 +9,10 @@ namespace CarbonSarenza.Web.Controllers
     public class TemperatureController : ControllerBase
     {
 
-        private readonly SensorService _services;
+        private readonly ISensorService _services;
 
 
-        public TemperatureController(SensorService sensorService)
+        public TemperatureController(ISensorService sensorService)
         {
             _services = sensorService;  
         }
