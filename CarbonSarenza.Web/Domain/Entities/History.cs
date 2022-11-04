@@ -1,8 +1,7 @@
 ﻿namespace CarbonSarenza.Web.Domain.Entities;
 
-public class History
+public class History : BaseEntity<int>
 {
-    public int Id { get; set; }
-    public DateTime Date { get; set; }
-    public  double Temperature { get; set; }
+    public DateTime Date { get; init; } = DateTime.Now;
+    public  double Temperature { get; init; }
 }

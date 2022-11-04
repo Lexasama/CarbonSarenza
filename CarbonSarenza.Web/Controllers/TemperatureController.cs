@@ -1,5 +1,4 @@
 ﻿using CarbonSarenza.Web.Domain.Services;
-using CarbonSarenza.Web.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarbonSarenza.Web.Controllers

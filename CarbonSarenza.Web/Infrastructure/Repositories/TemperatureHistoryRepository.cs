@@ -16,17 +16,17 @@ public class TemperatureHistoryRepository : Repository<History>, ITemperatureHis
     {
     }
     
-    public async Task<IEnumerable<double>> FindLastEntries(int entriesNumber)
+    public async Task<IReadOnlyList<double>> FindLastEntries(int entriesNumber)
     {
-        return await _dbContext.History
+        return (await _dbContext.History
             .OrderByDescending(h => h.Date)
             .Take(entriesNumber)
             .Select(h => h.Temperature)
-            .ToListAsync();
+            .ToListAsync()).AsReadOnly();
     }
 
     public async Task<double> FindLastEntry()
     {
-        return (await FindLastEntries(1)).First();
+        return (await FindLastEntries(1)).FirstOrDefault();
     }
 }
