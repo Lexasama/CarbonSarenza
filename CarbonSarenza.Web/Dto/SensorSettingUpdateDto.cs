@@ -1,4 +1,4 @@
-﻿namespace CarbonSarenza.Web
+﻿namespace CarbonSarenza.Web.Dto
 {
     public class SensorSettingUpdateDto
     {

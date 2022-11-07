@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CarbonSarenza.Web.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,7 @@ namespace CarbonSarenza.Web.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Date = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Temperature = table.Column<double>(type: "REAL", nullable: false)
+                    TemperatureC = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,6 +37,16 @@ namespace CarbonSarenza.Web.Migrations
                 {
                     table.PrimaryKey("PK_Settings", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "History",
+                columns: new[] { "Id", "Date", "TemperatureC" },
+                values: new object[] { 1, new DateTime(2022, 11, 7, 10, 25, 22, 617, DateTimeKind.Local).AddTicks(2382), 22.0 });
+
+            migrationBuilder.InsertData(
+                table: "Settings",
+                columns: new[] { "Id", "ColdTemperature", "CreationDateTime", "HotTemperature" },
+                values: new object[] { 1, 22.0, new DateTime(2022, 11, 7, 10, 25, 22, 617, DateTimeKind.Local).AddTicks(2278), 40.0 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

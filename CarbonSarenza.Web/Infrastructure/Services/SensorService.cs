@@ -24,7 +24,7 @@ namespace CarbonSarenza.Web.Infrastructure.Services
             double currentTemperature = _captor.GetTemperature();
             await _temperatureHistoryRepository.AddAsync(new History()
             {
-               Temperature = currentTemperature
+               TemperatureC = currentTemperature
             });
             
             return currentTemperature;
@@ -49,7 +49,7 @@ namespace CarbonSarenza.Web.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public async Task<string> GetState()
+        public async Task<TemperatureFeeling> GetState()
         {
             var currentTemperate = await GetTemperature();
 
@@ -57,18 +57,18 @@ namespace CarbonSarenza.Web.Infrastructure.Services
 
             if (currentTemperate >= settings.HotTemperature)
             {
-                return SensorState.HOT.ToString();
+                return TemperatureFeeling.HOT;
             }
             if (currentTemperate < settings.ColdTemperature)
             {
-                return SensorState.COLD.ToString();
+                return TemperatureFeeling.COLD;
             }
 
-            return SensorState.WARM.ToString();
+            return TemperatureFeeling.WARM;
 
         }
 
-        public async Task<Setting> GetSensorSetting()
+        private async Task<Setting> GetSensorSetting()
         {
             return await _settingRepository.FindLastEntry();
         }

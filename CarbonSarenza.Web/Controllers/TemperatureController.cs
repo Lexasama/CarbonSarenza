@@ -1,10 +1,13 @@
 ﻿using CarbonSarenza.Web.Domain.Services;
+using CarbonSarenza.Web.Domain.ValueObjects;
+using CarbonSarenza.Web.Dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarbonSarenza.Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Produces("application/json")]
     public class TemperatureController : ControllerBase
     {
 
@@ -17,9 +20,13 @@ namespace CarbonSarenza.Web.Controllers
         }
 
         [HttpGet(Name = "GetTemperature")]
-        public async Task<ActionResult<double>> Get()
+        public async Task<ActionResult<WeatherDto>> Get()
         {
-            return Ok(await _services.GetTemperature());
+            var temperature = await _services.GetTemperature();
+            var feeling = await _services.GetState();
+            var weather = new WeatherDto(Celsius.From(temperature), feeling);
+            
+            return Ok(weather);
         }
 
         [HttpGet("state", Name ="GetSensorState")]

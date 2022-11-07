@@ -1,6 +1,6 @@
 ﻿namespace CarbonSarenza.Web.Domain.ValueObjects;
 
-public class Celcius
+public abstract class ValueObject
 {
     
 }

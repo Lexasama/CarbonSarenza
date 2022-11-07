@@ -24,4 +24,15 @@ public class Repository<T>: IRepository<T> where T: class
           await _dbContext.SaveChangesAsync();
           return entity;
     }
+
+    public async Task DeleteAsync(T entity)
+    {
+        _dbContext.Set<T>().Remove(entity);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task<T> GetByIdAsync(int id)
+    {
+        return await _dbContext.Set<T>().FindAsync(id);
+    }
 }

@@ -1,7 +1,13 @@
-﻿namespace CarbonSarenza.Web.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-public class History : BaseEntity<int>
+namespace CarbonSarenza.Web.Domain.Entities;
+
+public class History
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
     public DateTime Date { get; init; } = DateTime.Now;
-    public  double Temperature { get; init; }
+    public  double TemperatureC { get; init; }
 }

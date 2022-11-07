@@ -1,6 +1,6 @@
 ﻿namespace CarbonSarenza.Web
 {
-    public enum SensorState
+    public enum TemperatureFeeling
     {
         HOT,
         WARM,

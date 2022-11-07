@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarbonSarenza.Web.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20221104085639_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20221107092522_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,12 +28,20 @@ namespace CarbonSarenza.Web.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Temperature")
+                    b.Property<double>("TemperatureC")
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
                     b.ToTable("History");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = new DateTime(2022, 11, 7, 10, 25, 22, 617, DateTimeKind.Local).AddTicks(2382),
+                            TemperatureC = 22.0
+                        });
                 });
 
             modelBuilder.Entity("CarbonSarenza.Web.Domain.Entities.Setting", b =>
@@ -54,6 +62,15 @@ namespace CarbonSarenza.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Settings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ColdTemperature = 22.0,
+                            CreationDateTime = new DateTime(2022, 11, 7, 10, 25, 22, 617, DateTimeKind.Local).AddTicks(2278),
+                            HotTemperature = 40.0
+                        });
                 });
 #pragma warning restore 612, 618
         }

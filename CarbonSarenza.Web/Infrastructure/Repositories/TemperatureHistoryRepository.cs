@@ -21,7 +21,7 @@ public class TemperatureHistoryRepository : Repository<History>, ITemperatureHis
         return (await _dbContext.History
             .OrderByDescending(h => h.Date)
             .Take(entriesNumber)
-            .Select(h => h.Temperature)
+            .Select(h => h.TemperatureC)
             .ToListAsync()).AsReadOnly();
     }
 

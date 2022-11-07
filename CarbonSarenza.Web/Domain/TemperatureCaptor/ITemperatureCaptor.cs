@@ -1,10 +1,6 @@
 ﻿namespace CarbonSarenza.Web.Domain.TemperatureCaptor;
 
-public interface ITemperatureCaptor{
-
-
-
-double GetTemperature();
-
-
+public interface ITemperatureCaptor
+{
+    public double GetTemperature();
 }
