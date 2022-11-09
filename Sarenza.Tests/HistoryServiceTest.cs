@@ -11,7 +11,6 @@ public class HistoryServiceTest
     [Fact]
     public async Task GetHistory_returns_the_right_history_list()
     {
-
         var historyRepository = new Mock<ITemperatureHistoryRepository>();
         var data = new List<History>()
         {

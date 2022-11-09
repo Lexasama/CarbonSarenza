@@ -5,6 +5,15 @@ namespace Sarenza.Core.Entities;
 
 public class Setting : IEquatable<Setting>
 {
+
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
+
+    public double HotTemperature { get; set; }
+    public double ColdTemperature { get; set; }
+    public DateTime CreationDateTime { get; set; }
+    
     public bool Equals(Setting? other)
     {
         if (ReferenceEquals(null, other)) return false;
@@ -24,12 +33,4 @@ public class Setting : IEquatable<Setting>
     {
         return HashCode.Combine(Id, HotTemperature, ColdTemperature, CreationDateTime);
     }
-
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
-
-    public double HotTemperature { get; set; }
-    public double ColdTemperature { get; set; }
-    public DateTime CreationDateTime { get; set; }
 }

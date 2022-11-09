@@ -15,7 +15,7 @@ namespace Sarenza.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Date = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValueSql: "GETDATE()"),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValueSql: "GETUTCDATE()"),
                     TemperatureC = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
@@ -31,7 +31,7 @@ namespace Sarenza.DAL.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     HotTemperature = table.Column<double>(type: "REAL", nullable: false),
                     ColdTemperature = table.Column<double>(type: "REAL", nullable: false),
-                    CreationDateTime = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValueSql: "GETDATE()")
+                    CreationDateTime = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValueSql: "GETUTCDATE()")
                 },
                 constraints: table =>
                 {
